@@ -444,7 +444,7 @@ const App = () => {
       <header className="relative min-h-[100svh] flex items-center overflow-hidden hero-section pt-20">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <img
-            src="/assets/hero_premium.png"
+            src="/assets/hero.png"
             alt="Ajinkya Automobile Premium Studio"
             fetchpriority="high"
             loading="eager"
@@ -658,6 +658,7 @@ const App = () => {
                 <img
                   src={item.img}
                   alt={item.title}
+                  loading="lazy"
                   className="w-full h-full object-cover grayscale-0 group-hover:grayscale group-hover:scale-110 transition-all duration-700 ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
@@ -708,7 +709,8 @@ const App = () => {
             <div className="flex-1 lg:min-h-[600px] relative overflow-hidden group">
               <img
                 src="/assets/showroom.png"
-                alt="Showroom"
+                alt="Ajinkya Elite Showroom"
+                loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-linear-to-r from-[#0f172a] to-transparent hidden lg:block" />
@@ -807,37 +809,43 @@ const App = () => {
       </footer>
 
       {/* Enhanced Demo Watermark */}
-      <div className="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 z-[150] select-none pointer-events-none">
-        <div className="bg-white/80 backdrop-blur-2xl px-10 py-7 border-2 border-gold/20 shadow-[0_40px_120px_-30px_rgba(0,0,0,0.2)] pointer-events-auto cursor-default relative overflow-hidden group/watermark">
+      <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 lg:bottom-10 lg:right-10 z-[150] select-none pointer-events-none">
+        <div className="bg-white/80 backdrop-blur-2xl px-5 py-4 sm:px-8 sm:py-6 lg:px-10 lg:py-7 border-2 border-gold/20 shadow-[0_40px_120px_-30px_rgba(0,0,0,0.2)] pointer-events-auto cursor-default relative overflow-hidden group/watermark">
           {/* Animated Glow Effect */}
           <div className="absolute -inset-2 bg-linear-to-r from-gold/0 via-gold/5 to-gold/0 opacity-0 group-hover/watermark:opacity-100 transition-opacity duration-1000 -translate-x-full group-hover/watermark:translate-x-full ease-linear" />
 
           <div className="flex flex-col items-end relative z-10">
-            <span className="text-gold/60 text-[10px] uppercase tracking-[0.5em] font-heading font-black mb-3.5">
+            <span className="text-gold/60 text-[8px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.5em] font-heading font-black mb-1.5 sm:mb-3.5">
               Designed & Developed By
             </span>
             <a
               href="https://www.linkedin.com/in/jaisilan-nadar-462646206/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#0f172a] text-3xl font-black uppercase tracking-tighter font-heading mb-4 hover:text-gold transition-all duration-700 cursor-pointer flex items-center gap-3"
+              className="text-[#0f172a] text-lg sm:text-2xl lg:text-3xl font-black uppercase tracking-tighter font-heading mb-2 sm:mb-4 hover:text-gold transition-all duration-700 cursor-pointer flex items-center gap-2"
             >
               Jaisilan Nadar
             </a>
-            <div className="h-[2px] w-full bg-linear-to-r from-transparent via-[#0f172a]/10 to-[#0f172a]/5 mb-5" />
-            <div className="flex items-center space-x-3 text-gold">
-              <Star size={12} className="fill-gold animate-pulse" />
-              <span className="text-[13px] font-black tracking-[0.4em] uppercase font-heading italic">
+            <div className="h-[1.5px] sm:h-[2px] w-full bg-linear-to-r from-transparent via-[#0f172a]/10 to-[#0f172a]/5 mb-3 sm:mb-5" />
+            <div className="flex items-center space-x-2 sm:space-x-3 text-gold">
+              <Star
+                size={10}
+                className="fill-gold animate-pulse sm:w-[12px] sm:h-[12px]"
+              />
+              <span className="text-[10px] sm:text-[13px] font-black tracking-[0.2em] sm:tracking-[0.4em] uppercase font-heading italic">
                 DEMO WEBSITE
               </span>
-              <Star size={12} className="fill-gold animate-pulse delay-500" />
+              <Star
+                size={10}
+                className="fill-gold animate-pulse delay-500 sm:w-[12px] sm:h-[12px]"
+              />
             </div>
           </div>
 
           {/* Luxury Corner Highlight */}
-          <div className="absolute top-0 right-0 w-8 h-8 pointer-events-none overflow-hidden">
-            <div className="absolute top-0 right-0 w-full h-[2px] bg-gold" />
-            <div className="absolute top-0 right-0 w-[2px] h-full bg-gold" />
+          <div className="absolute top-0 right-0 w-6 h-6 sm:w-8 sm:h-8 pointer-events-none overflow-hidden">
+            <div className="absolute top-0 right-0 w-full h-[1.5px] sm:h-[2px] bg-gold" />
+            <div className="absolute top-0 right-0 w-[1.5px] sm:w-[2px] h-full bg-gold" />
           </div>
         </div>
       </div>
