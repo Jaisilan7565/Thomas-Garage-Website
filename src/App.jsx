@@ -758,8 +758,8 @@ const App = () => {
             <div className="flex items-center space-x-5 text-[#475569]">
               <MapPin className="text-gold shrink-0 opacity-80" size={20} />
               <span className="text-xs sm:text-sm font-medium">
-                GALA NO 2, PATEL INDUSTRIAL EST., NEAR UPKAR HOTEL, I.B. Patel
-                Road, Goregaon East, Mumbai-400063, Maharashtra
+                Gala no.9, Shyam Engineering Works, IB Patel Rd, opp. Zydus, Jay
+                Prakash Nagar, Goregaon East, Mumbai, Maharashtra 400063
               </span>
             </div>
             <div className="flex items-center space-x-5 text-[#475569]">
@@ -784,7 +784,7 @@ const App = () => {
             </h5>
             <div className="w-full h-48 sm:h-full min-h-[180px] opacity-90 shadow-2xl shadow-black/5 hover:opacity-100 transition-all duration-1000 bg-white rounded-sm overflow-hidden border border-[#1a1c1e]/5">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.4552431234!2d72.8524!3d19.1755!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b70c!2sI.B.+Patel+Road%2C+Goregaon+East!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2609.5958842779987!2d72.85287104707136!3d19.162201442923465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b7574c6e7195%3A0x7d3d16c453a22793!2sAjinkya%20Automobile!5e0!3m2!1sen!2sin!4v1772993010477!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -797,6 +797,20 @@ const App = () => {
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-10 sm:pt-10 flex flex-col md:flex-row justify-between items-center text-[#1a1c1e]/40 text-[9px] sm:text-[11px] uppercase tracking-[0.4em] gap-6 border-t border-[#1a1c1e]/5">
           <div>© 2026 Ajinkya Automobile. All rights reserved.</div>
+          <div className="flex flex-col items-center gap-1">
+            <span className="text-gold/60 text-[8px] uppercase tracking-[0.5em] font-heading font-black">
+              Designed & Developed By
+            </span>
+            <a
+              href="https://www.linkedin.com/in/jaisilan-nadar-462646206/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#0f172a] text-sm font-black uppercase tracking-widest hover:text-gold transition-all duration-700 font-heading flex items-center gap-2"
+            >
+              Jaisilan Nadar
+            </a>
+          </div>
+
           <div className="flex space-x-8 sm:space-x-12">
             <a href="#" className="hover:text-gold transition-colors font-bold">
               Privacy Policy
@@ -807,48 +821,6 @@ const App = () => {
           </div>
         </div>
       </footer>
-
-      {/* Enhanced Demo Watermark */}
-      <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 lg:bottom-10 lg:right-10 z-[150] select-none pointer-events-none">
-        <div className="bg-white/80 backdrop-blur-2xl px-5 py-4 sm:px-8 sm:py-6 lg:px-10 lg:py-7 border-2 border-gold/20 shadow-[0_40px_120px_-30px_rgba(0,0,0,0.2)] pointer-events-auto cursor-default relative overflow-hidden group/watermark">
-          {/* Animated Glow Effect */}
-          <div className="absolute -inset-2 bg-linear-to-r from-gold/0 via-gold/5 to-gold/0 opacity-0 group-hover/watermark:opacity-100 transition-opacity duration-1000 -translate-x-full group-hover/watermark:translate-x-full ease-linear" />
-
-          <div className="flex flex-col items-end relative z-10">
-            <span className="text-gold/60 text-[8px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.5em] font-heading font-black mb-1.5 sm:mb-3.5">
-              Designed & Developed By
-            </span>
-            <a
-              href="https://www.linkedin.com/in/jaisilan-nadar-462646206/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#0f172a] text-lg sm:text-2xl lg:text-3xl font-black uppercase tracking-tighter font-heading mb-2 sm:mb-4 hover:text-gold transition-all duration-700 cursor-pointer flex items-center gap-2"
-            >
-              Jaisilan Nadar
-            </a>
-            <div className="h-[1.5px] sm:h-[2px] w-full bg-linear-to-r from-transparent via-[#0f172a]/10 to-[#0f172a]/5 mb-3 sm:mb-5" />
-            <div className="flex items-center space-x-2 sm:space-x-3 text-gold">
-              <Star
-                size={10}
-                className="fill-gold animate-pulse sm:w-[12px] sm:h-[12px]"
-              />
-              <span className="text-[10px] sm:text-[13px] font-black tracking-[0.2em] sm:tracking-[0.4em] uppercase font-heading italic">
-                DEMO WEBSITE
-              </span>
-              <Star
-                size={10}
-                className="fill-gold animate-pulse delay-500 sm:w-[12px] sm:h-[12px]"
-              />
-            </div>
-          </div>
-
-          {/* Luxury Corner Highlight */}
-          <div className="absolute top-0 right-0 w-6 h-6 sm:w-8 sm:h-8 pointer-events-none overflow-hidden">
-            <div className="absolute top-0 right-0 w-full h-[1.5px] sm:h-[2px] bg-gold" />
-            <div className="absolute top-0 right-0 w-[1.5px] sm:w-[2px] h-full bg-gold" />
-          </div>
-        </div>
-      </div>
     </div>
   );
 };
