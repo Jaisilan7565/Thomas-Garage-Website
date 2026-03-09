@@ -21,6 +21,7 @@ import {
   Send,
   Loader2,
   Mail,
+  Check,
 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -56,11 +57,10 @@ const BookingModal = ({ isOpen, onClose }) => {
       setIsSubmitting(true);
       setStatus(null);
 
-      // EmailJS Configuration
-      // Replace with your Service ID, Template ID, and Public Key from EmailJS.com
-      const SERVICE_ID = "YOUR_SERVICE_ID";
-      const TEMPLATE_ID = "YOUR_TEMPLATE_ID";
-      const PUBLIC_KEY = "YOUR_PUBLIC_KEY";
+      // EmailJS Configuration from Environment Variables
+      const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
       try {
         await emailjs.send(
@@ -78,10 +78,6 @@ const BookingModal = ({ isOpen, onClose }) => {
         );
         setStatus("success");
         resetForm();
-        setTimeout(() => {
-          setStatus(null);
-          onClose();
-        }, 3000);
       } catch (error) {
         console.error("EmailJS Error:", error);
         setStatus("error");
@@ -108,143 +104,162 @@ const BookingModal = ({ isOpen, onClose }) => {
           <X size={24} />
         </button>
 
-        <div className="mb-8">
-          <h2 className="text-2xl sm:text-4xl font-heading font-extrabold text-[#111111] uppercase tracking-tighter">
-            Book Your Consultation
-          </h2>
-          <p className="text-[#666666] text-xs sm:text-sm mt-3 font-medium">
-            Schedule a private session with our master engineers.
-          </p>
-        </div>
-
-        {status === "success" && (
-          <div className="mb-6 p-4 bg-green-500/10 border border-green-500/50 text-green-400 text-sm">
-            Thank you! Your appointment request has been sent successfully.
-          </div>
-        )}
-
-        {status === "error" && (
-          <div className="mb-6 p-4 bg-red-500/10 border border-red-500/50 text-red-400 text-sm">
-            Something went wrong. Please try again or call us directly.
-          </div>
-        )}
-
-        <form onSubmit={formik.handleSubmit} className="space-y-5">
-          <div className="space-y-1">
-            <label className="text-[9px] uppercase tracking-[0.2em] text-[#94a3b8] font-heading font-extrabold">
-              Full Name
-            </label>
-            <input
-              type="text"
-              name="name"
-              {...formik.getFieldProps("name")}
-              className={`w-full bg-charcoal border ${formik.touched.name && formik.errors.name ? "border-red-500" : "border-slate-200"} px-5 py-4 text-sm focus:border-gold outline-none transition-all text-[#0f172a] font-medium placeholder:text-slate-400`}
-              placeholder="Ex: Alexander Pierce"
-            />
-            {formik.touched.name && formik.errors.name && (
-              <div className="text-red-500 text-[10px] uppercase tracking-tighter">
-                {formik.errors.name}
-              </div>
-            )}
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <div className="space-y-1">
-              <label className="text-[9px] uppercase tracking-[0.2em] text-[#999999] font-heading font-bold">
-                Email Address
-              </label>
-              <input
-                type="email"
-                name="email"
-                {...formik.getFieldProps("email")}
-                className={`w-full bg-gray-50 border ${formik.touched.email && formik.errors.email ? "border-red-500" : "border-black/10"} px-4 py-3 text-sm focus:border-gold outline-none transition-all text-black`}
-                placeholder="john@example.com"
-              />
-              {formik.touched.email && formik.errors.email && (
-                <div className="text-red-500 text-[10px] uppercase tracking-tighter">
-                  {formik.errors.email}
-                </div>
-              )}
+        {status === "success" ? (
+          <div className="py-12 flex flex-col items-center text-center space-y-6 gsap-reveal-success">
+            <div className="w-20 h-20 bg-green-500/10 rounded-full flex items-center justify-center text-green-500 animate-bounce">
+              <Check size={40} />
             </div>
-
-            <div className="space-y-1">
-              <label className="text-[9px] uppercase tracking-[0.2em] text-[#999999] font-heading font-bold">
-                Phone Number
-              </label>
-              <input
-                type="text"
-                name="phone"
-                {...formik.getFieldProps("phone")}
-                className={`w-full bg-gray-50 border ${formik.touched.phone && formik.errors.phone ? "border-red-500" : "border-black/10"} px-4 py-3 text-sm focus:border-gold outline-none transition-all text-black`}
-                placeholder="+91 98XXX XXXXX"
-              />
-              {formik.touched.phone && formik.errors.phone && (
-                <div className="text-red-500 text-[10px] uppercase tracking-tighter">
-                  {formik.errors.phone}
-                </div>
-              )}
+            <div className="space-y-2">
+              <h2 className="text-3xl font-heading font-black text-[#0f172a] uppercase tracking-tighter">
+                Booking Received
+              </h2>
+              <p className="text-[#666666] text-sm font-medium max-w-xs mx-auto">
+                Our engineers have been notified. We will contact you shortly to
+                finalize your appointment.
+              </p>
             </div>
-          </div>
-
-          <div className="space-y-1">
-            <label className="text-[9px] uppercase tracking-[0.2em] text-[#999999] font-heading font-bold">
-              Select Service
-            </label>
-            <select
-              name="service"
-              {...formik.getFieldProps("service")}
-              className={`w-full bg-gray-50 border ${formik.touched.service && formik.errors.service ? "border-red-500" : "border-black/10"} px-4 py-3 text-sm focus:border-gold outline-none transition-all appearance-none text-black`}
+            <button
+              onClick={onClose}
+              className="px-10 py-4 bg-[#0f172a] text-white text-[10px] font-black uppercase tracking-[0.2em] hover:bg-gold transition-all duration-300 shadow-lg"
             >
-              <option value="" disabled>
-                Choose a service
-              </option>
-              <option value="On-Site Services">On-Site Services</option>
-              <option value="Denting & Painting">Denting & Painting</option>
-              <option value="Mechanical Repairs">Mechanical Repairs</option>
-              <option value="Body Repairs">Body Repairs</option>
-              <option value="Electrical Repairs">Electrical Repairs</option>
-            </select>
-            {formik.touched.service && formik.errors.service && (
-              <div className="text-red-500 text-[10px] uppercase tracking-tighter">
-                {formik.errors.service}
+              Back to Showroom
+            </button>
+          </div>
+        ) : (
+          <>
+            <div className="mb-8">
+              <h2 className="text-2xl sm:text-4xl font-heading font-extrabold text-[#111111] uppercase tracking-tighter">
+                Book Your Consultation
+              </h2>
+              <p className="text-[#666666] text-xs sm:text-sm mt-3 font-medium">
+                Schedule a private session with our master engineers.
+              </p>
+            </div>
+
+            {status === "error" && (
+              <div className="mb-6 p-4 bg-red-500/10 border border-red-500/50 text-red-400 text-sm">
+                Something went wrong. Please try again or call us directly.
               </div>
             )}
-          </div>
 
-          <div className="space-y-1">
-            <label className="text-[9px] uppercase tracking-[0.2em] text-[#94a3b8] font-heading font-extrabold">
-              Message (Optional)
-            </label>
-            <textarea
-              name="message"
-              {...formik.getFieldProps("message")}
-              rows="3"
-              className="w-full bg-charcoal border border-slate-200 px-5 py-4 text-sm focus:border-gold outline-none transition-all resize-none text-[#0f172a] font-medium placeholder:text-slate-400"
-              placeholder="Specific requirements for your vehicle..."
-            />
-          </div>
-
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full bg-[#0f172a] text-white font-bold uppercase tracking-[0.4em] py-5 flex items-center justify-center space-x-4 hover:bg-gold transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed group shadow-2xl shadow-[#0f172a]/10"
-          >
-            {isSubmitting ? (
-              <>
-                <Loader2 className="animate-spin" size={18} />
-                <span className="text-[10px]">Processing Request...</span>
-              </>
-            ) : (
-              <>
-                <span className="text-[10px]">Confirm Appointment</span>
-                <Send
-                  size={16}
-                  className="group-hover:translate-x-2 transition-transform duration-500"
+            <form onSubmit={formik.handleSubmit} className="space-y-5">
+              <div className="space-y-1">
+                <label className="text-[9px] uppercase tracking-[0.2em] text-[#94a3b8] font-heading font-extrabold">
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  {...formik.getFieldProps("name")}
+                  className={`w-full bg-charcoal border ${formik.touched.name && formik.errors.name ? "border-red-500" : "border-slate-200"} px-5 py-4 text-sm focus:border-gold outline-none transition-all text-[#0f172a] font-medium placeholder:text-slate-400`}
+                  placeholder="Ex: Alexander Pierce"
                 />
-              </>
-            )}
-          </button>
-        </form>
+                {formik.touched.name && formik.errors.name && (
+                  <div className="text-red-500 text-[10px] uppercase tracking-tighter">
+                    {formik.errors.name}
+                  </div>
+                )}
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div className="space-y-1">
+                  <label className="text-[9px] uppercase tracking-[0.2em] text-[#999999] font-heading font-bold">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    {...formik.getFieldProps("email")}
+                    className={`w-full bg-gray-50 border ${formik.touched.email && formik.errors.email ? "border-red-500" : "border-black/10"} px-4 py-3 text-sm focus:border-gold outline-none transition-all text-black`}
+                    placeholder="john@example.com"
+                  />
+                  {formik.touched.email && formik.errors.email && (
+                    <div className="text-red-500 text-[10px] uppercase tracking-tighter">
+                      {formik.errors.email}
+                    </div>
+                  )}
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-[9px] uppercase tracking-[0.2em] text-[#999999] font-heading font-bold">
+                    Phone Number
+                  </label>
+                  <input
+                    type="text"
+                    name="phone"
+                    {...formik.getFieldProps("phone")}
+                    className={`w-full bg-gray-50 border ${formik.touched.phone && formik.errors.phone ? "border-red-500" : "border-black/10"} px-4 py-3 text-sm focus:border-gold outline-none transition-all text-black`}
+                    placeholder="+91 98XXX XXXXX"
+                  />
+                  {formik.touched.phone && formik.errors.phone && (
+                    <div className="text-red-500 text-[10px] uppercase tracking-tighter">
+                      {formik.errors.phone}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-[9px] uppercase tracking-[0.2em] text-[#999999] font-heading font-bold">
+                  Select Service
+                </label>
+                <select
+                  name="service"
+                  {...formik.getFieldProps("service")}
+                  className={`w-full bg-gray-50 border ${formik.touched.service && formik.errors.service ? "border-red-500" : "border-black/10"} px-4 py-3 text-sm focus:border-gold outline-none transition-all appearance-none text-black`}
+                >
+                  <option value="" disabled>
+                    Choose a service
+                  </option>
+                  <option value="On-Site Services">On-Site Services</option>
+                  <option value="Denting & Painting">Denting & Painting</option>
+                  <option value="Mechanical Repairs">Mechanical Repairs</option>
+                  <option value="Body Repairs">Body Repairs</option>
+                  <option value="Electrical Repairs">Electrical Repairs</option>
+                </select>
+                {formik.touched.service && formik.errors.service && (
+                  <div className="text-red-500 text-[10px] uppercase tracking-tighter">
+                    {formik.errors.service}
+                  </div>
+                )}
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-[9px] uppercase tracking-[0.2em] text-[#94a3b8] font-heading font-extrabold">
+                  Message (Optional)
+                </label>
+                <textarea
+                  name="message"
+                  {...formik.getFieldProps("message")}
+                  rows="3"
+                  className="w-full bg-charcoal border border-slate-200 px-5 py-4 text-sm focus:border-gold outline-none transition-all resize-none text-[#0f172a] font-medium placeholder:text-slate-400"
+                  placeholder="Specific requirements for your vehicle..."
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-[#0f172a] text-white font-bold uppercase tracking-[0.4em] py-5 flex items-center justify-center space-x-4 hover:bg-gold transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed group shadow-2xl shadow-[#0f172a]/10"
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="animate-spin" size={18} />
+                    <span className="text-[10px]">Processing Request...</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="text-[10px]">Confirm Appointment</span>
+                    <Send
+                      size={16}
+                      className="group-hover:translate-x-2 transition-transform duration-500"
+                    />
+                  </>
+                )}
+              </button>
+            </form>
+          </>
+        )}
       </div>
     </div>
   );
