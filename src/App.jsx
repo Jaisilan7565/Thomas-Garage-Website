@@ -20,6 +20,7 @@ import {
   Settings,
   Send,
   Loader2,
+  Mail,
 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -444,24 +445,25 @@ const App = () => {
       <header className="relative min-h-[100svh] flex items-center overflow-hidden hero-section pt-20">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <img
-            src="/assets/hero.png"
+            src="/assets/hero1.png"
             alt="Ajinkya Automobile Premium Studio"
             fetchpriority="high"
             loading="eager"
             className="hero-bg w-full h-full object-cover opacity-100 transition-opacity duration-1000 scale-105 parallax-bg"
           />
-          {/* Targeted Studio Lighting */}
-          <div className="absolute inset-0 bg-linear-to-r from-premium-black/30 via-premium-black/10 to-transparent lg:w-[60%] opacity-100 z-0" />
-          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-linear-to-t from-premium-black/20 to-transparent pointer-events-none" />
+          {/* Targeted Studio Lighting - Using dark overlay for better text contrast */}
+          <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/40 to-transparent lg:w-[70%] opacity-100 z-0" />
+          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-linear-to-t from-black/50 to-transparent pointer-events-none" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full py-20 flex flex-col lg:flex-row items-center lg:items-start justify-between gap-12">
           {/* Main Content Area */}
           <div className="flex-1 lg:max-w-3xl text-center lg:text-left order-2 lg:order-1">
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-heading font-black leading-relaxed mb-8 text-[#0f172a] tracking-tight py-8 overflow-visible relative">
-              <span className="opacity-95 drop-shadow-sm bg-white/10 bg-drop-shadow-sm rounded-4xl px-2">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-heading font-black leading-relaxed mb-8 text-white tracking-tight py-8 overflow-visible relative">
+              <span className="opacity-95 drop-shadow-sm bg-white/10 rounded-4xl px-4">
                 THE ART OF
               </span>
+              <br className="sm:hidden" />
               <span className="gold-gradient-text italic inline-block pr-8 uppercase drop-shadow-md">
                 MASTERY
               </span>
@@ -474,7 +476,7 @@ const App = () => {
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-8 hero-element justify-center lg:justify-start">
               <button
                 onClick={openBookingModal}
-                className="group px-12 py-6 bg-[#0f172a] text-white font-black uppercase tracking-[0.2em] flex items-center justify-center space-x-6 hover:bg-gold transition-all duration-500 font-heading text-xs shadow-2xl"
+                className="group px-12 py-6 bg-gold text-white font-black uppercase tracking-[0.2em] flex items-center justify-center space-x-6 hover:bg-black transition-all duration-500 font-heading text-xs shadow-[0_0_30px_rgba(180,83,9,0.3)] hover:shadow-[0_0_50px_rgba(180,83,9,0.5)]"
               >
                 <span>Initialize Service</span>
                 <div className="w-8 h-[1px] bg-white opacity-40 group-hover:w-12 transition-all" />
@@ -621,34 +623,34 @@ const App = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {[
               {
-                img: "/assets/showcase1.png",
-                title: "Obsidian Supercar",
-                category: "Performance Tuning",
+                img: "/assets/work1.png",
+                title: "Engine Overhaul",
+                category: "Mechanical Mastery",
               },
               {
-                img: "/assets/showcase2.png",
-                title: "Heritage 911",
-                category: "Restoration",
+                img: "/assets/work2.png",
+                title: "Precision Sanding",
+                category: "Body Restoration",
               },
               {
-                img: "/assets/showcase3.png",
-                title: "Phantom SUV",
-                category: "Precision Detailing",
+                img: "/assets/work3.png",
+                title: "Hydro-Foam Wash",
+                category: "Premium Detailing",
               },
               {
-                img: "/assets/showcase4.png",
-                title: "V12 Mastery",
-                category: "Engine Rebuild",
+                img: "/assets/work4.png",
+                title: "Delivery Ready",
+                category: "Quality Inspection",
               },
               {
-                img: "/assets/showcase5.png",
-                title: "Midnight Garage",
-                category: "Luxury Storage",
+                img: "/assets/work5.png",
+                title: "Custom Respray",
+                category: "Paint Perfection",
               },
               {
-                img: "/assets/showcase6.png",
-                title: "Elite Showroom",
-                category: "Concourse Prep",
+                img: "/assets/work6.png",
+                title: "AC System Service",
+                category: "Climate Control",
               },
             ].map((item, i) => (
               <div
@@ -659,9 +661,9 @@ const App = () => {
                   src={item.img}
                   alt={item.title}
                   loading="lazy"
-                  className="w-full h-full object-cover grayscale-0 group-hover:grayscale group-hover:scale-110 transition-all duration-700 ease-out"
+                  className="w-full h-full object-cover grayscale-0 group-hover:scale-110 transition-all duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
                 <div className="absolute bottom-0 left-0 p-6 sm:p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                   <div className="text-gold text-[10px] uppercase tracking-widest mb-2 font-heading">
                     {item.category}
@@ -774,8 +776,24 @@ const App = () => {
               </div>
             </div>
             <div className="flex items-center space-x-5 text-[#475569]">
+              <Mail className="text-gold shrink-0 opacity-80" size={20} />
+              <a
+                href="mailto:info@ajinkyaautomobile.in"
+                className="text-xs sm:text-sm font-medium hover:text-gold transition-colors"
+              >
+                info@ajinkyaautomobile.in
+              </a>
+            </div>
+            <div className="flex items-start space-x-5 text-[#475569]">
               <Clock className="text-gold shrink-0 opacity-80" size={20} />
-              <span className="text-sm font-medium">Open 24/7</span>
+              <div className="flex flex-col space-y-1">
+                <span className="text-xs sm:text-sm font-medium">
+                  Mon to Sat: 10am - 8pm
+                </span>
+                <span className="text-xs sm:text-sm font-medium">
+                  Sun: 10am - 6pm
+                </span>
+              </div>
             </div>
           </div>
           <div className="h-full flex flex-col">
